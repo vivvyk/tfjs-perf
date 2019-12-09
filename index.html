@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TFJS Performance Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+  </head>
+
+
+  <body>
+      <div class="botui-app-container" id="bot_frontend" style="margin:20px">
+          <div class="ui green message" id='data_sel'>
+              <h1 class="ui header">Data Selection</h1>
+              <button class="ui green button" onclick="load_MNIST()">MNIST</button>
+          </div>
+          
+          
+          <div class="ui red message" id='model_sel'>
+              <h1 class="ui header">Model Selection</h1>
+              <button class="ui red button" onclick="load_dnn()">DNN</button>
+              <button class="ui red button" onclick="load_cnn()">CNN</button>
+              <button class="ui red button" onclick="load_med_cnn()">Med CNN</button>
+              <button class="ui red button" onclick="load_big_cnn()">Big CNN</button>
+          </div>
+          
+          
+          <div class="ignored info ui message" id="results" style="width:100%">
+              <h1 class="ui header">Training Performance</h1>
+              <div class="ui input focus">
+                  <input type="text" id="batch_size" placeholder="Batch Size">
+              </div>
+              
+              <div class="ui input focus">
+                  <input type="text" id="epochs" placeholder="Epochs">
+              </div>
+              
+              
+              <div class="ui link cards" style="width:100%; margin-top:10px">
+                
+                
+                  <div class="card" style="width:47%">
+                    <div class="content">
+                      <div class="header">Serverless Training</div>
+                      <div class="description">
+                        Train selected model on the client side.
+                      </div>
+                      <br />
+                      <button class="ui blue button" style="width:100%" onclick="train()">Train</button>
+                      
+                      <br />
+                      
+                      <div id='outputjs'></div>
+                      
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="card" style="width:47%">
+                    <div class="content">
+                      <div class="header">Server-Based Training</div>
+                      <div class="description">
+                        Load selected, trained model on the AWS server pipline.
+                      </div>
+                      <br />
+                      <button class="ui blue button" style="width:100%">Train</button>
+                    </div>
+                  </div>
+                  
+                  
+              </div>
+          </div>
+          
+          <div class="ui orange message" id="results_test" style="width:100%">
+              <h1 class="ui header">Testing Performance</h1>
+              
+              <div class="ui link cards" style="width:100%; margin-top:10px">
+                
+                
+                  <div class="card" style="width:47%">
+                    <div class="content">
+                      <div class="header">Serverless Testing</div>
+                      <div class="description">
+                        Test trained model on the client side.
+                      </div>
+                      <br />
+                      <button class="ui orange button" style="width:100%" onclick="test()">Test</button>
+                      
+                      <br />
+                      
+                      <div id='outputtestjs'></div>
+                      
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="card" style="width:47%">
+                    <div class="content">
+                      <div class="header">Server-Based Testing</div>
+                      <div class="description">
+                        Test pipline job with full submission.
+                      </div>
+                      <br />
+                      <button class="ui orange button" style="width:100%">Test</button>
+                    </div>
+                  </div>
+                  
+                  
+              </div>
+          </div>
+          
+      </div>
+
+  </body>
+
+  <!-- zip.js  -->
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.0/jszip.js"></script-->
+
+  <!-- tensorflow-related  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.2.10/tf.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.2.10/tf.js.map"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
+  
+  <!--script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script-->
+  <script type="module" src="data.js"></script>
+  <script type="module" src="index.js"></script>
+
+</html>
